@@ -23,7 +23,7 @@ class RepositorioSerie():
 
     def obter(self, serie_titulo: str):
         stmt = select(models.Serie).filter_by(titulo=serie_titulo)
-        serie = self.db.execute(stmt).one()
+        serie = self.db.execute(stmt)
         return serie
 
     def remover(self, serie_titulo: str):
