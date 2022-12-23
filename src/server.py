@@ -18,3 +18,15 @@ def criar_serie(serie: schemas.Serie, db: Session = Depends(get_db)):
 @app.get('/series')
 def listar_serie(db: Session = Depends(get_db)):
     return RepositorioSerie(db).listar()
+
+
+@app.get('/series/{serie_titulo}')
+def obter_serie(serie_titulo: str, db: Session = Depends(get_db)):
+    serie = RepositorioSerie(db).obter(serie_titulo)
+    return serie
+
+
+@app.delete('/series/{serie_titulo}')
+def obter_serie(serie_titulo: str, db: Session = Depends(get_db)):
+    RepositorioSerie(db).remover(serie_titulo)
+    return {"msg": "Removido com sucesso"}
